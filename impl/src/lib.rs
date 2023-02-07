@@ -96,12 +96,8 @@ fn parse_fixed_literal(lit: &Lit) -> Result<String, &'static str> {
             }
         }
         Lit::Float(ref float) => {
-            if !float.suffix().is_empty() {
-                Err("unexpected suffix")
-            } else {
-                let float = normalize_float(float.base10_digits())?;
-                Ok(float)
-            }
+            let float = normalize_float(float.base10_digits())?;
+            Ok(float)
         }
         _ => Err("expected int or float"),
     }
